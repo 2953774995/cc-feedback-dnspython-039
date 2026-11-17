@@ -21,6 +21,7 @@ __all__ = [
     "asyncbackend",
     "asyncquery",
     "asyncresolver",
+    "audit",
     "btree",
     "btreezone",
     "dnssec",

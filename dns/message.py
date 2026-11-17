@@ -713,6 +713,13 @@ class Message:
 
         if origin is None and self.origin is not None:
             origin = self.origin
+        if origin is None:
+            # Relative names in a message have nowhere else to inherit an
+            # origin from, so treat the DNS root as the implicit origin,
+            # matching dns.name.from_text()'s default.  This keeps
+            # round-tripping through to_wire()/from_wire() working for
+            # messages built with text helpers.
+            origin = dns.name.root
         if max_size == 0:
             if self.request_payload != 0:
                 max_size = self.request_payload
